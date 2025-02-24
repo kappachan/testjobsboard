@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Detected Jobs</h1>
+    
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {% for job in jobs %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden {% if job.is_new %}border-l-4 border-green-500{% endif %}">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-2">{{ job.title }}</h2>
+                <p class="text-gray-600 mb-4 line-clamp-3">{{ job.description }}</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-500">
+                        Detected: {{ job.detected_at.strftime('%Y-%m-%d %H:%M') }}
+                    </span>
+                    <a href="{{ job.url }}" target="_blank" 
+                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Apply
+                    </a>
+                </div>
+                {% if job.is_new %}
+                <div class="mt-4 inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                    New
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="col-span-full text-center py-12">
+            <p class="text-gray-500 text-lg">No jobs detected yet. Add some career pages to monitor!</p>
+            <a href="/" class="inline-block mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add Monitor
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

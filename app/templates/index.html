@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold mb-8">Monitor Job Postings</h1>
+    
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form action="/monitor" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="url">
+                    Career Page URL
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="url" name="url" type="url" placeholder="https://company.com/careers" required>
+                <p class="text-gray-600 text-xs italic mt-1">Enter the URL of the career page you want to monitor</p>
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="interval">
+                    Check Interval (minutes)
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       id="interval" name="interval" type="number" min="5" value="15" required>
+                <p class="text-gray-600 text-xs italic mt-1">How often to check for new jobs (minimum 5 minutes)</p>
+            </div>
+            
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit">
+                    Start Monitoring
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+        <p class="font-bold">How it works</p>
+        <p>1. Enter the URL of the career page you want to monitor</p>
+        <p>2. Set how often you want to check for new postings</p>
+        <p>3. Our AI will automatically detect and extract job postings</p>
+        <p>4. We'll notify you when new jobs are posted!</p>
+    </div>
+</div>
+{% endblock %} 
